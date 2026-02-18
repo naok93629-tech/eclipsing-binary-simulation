@@ -81,15 +81,15 @@ onload = () => {
     ctx2 = canvas2.getContext("2d");
     ctxA = canvasA.getContext("2d");
 
-    const dpi = window.devicePixelRatio || 1;
+    const dpr = window.devicePixelRatio || 1;
     [canvas1, canvas2, canvasA].forEach((canvas) => {
         const style = getComputedStyle(canvas);
-        canvas.width = parseInt(style.width) * dpi;
-        canvas.height = parseInt(style.height) * dpi;
-        ctx1.scale(dpi, dpi);
-        ctx2.scale(dpi, dpi);
-        ctxA.scale(dpi, dpi);
+        canvas.width = parseInt(style.width) * dpr;
+        canvas.height = parseInt(style.height) * dpr;
     });
+    ctx1.scale(dpr, dpr);
+    ctx2.scale(dpr, dpr);
+    ctxA.scale(dpr, dpr);
 
     initVars();
     initLoop();
