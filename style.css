@@ -3,144 +3,149 @@ body {
     font: 1em Arial, Helvetica, sans-serif;
 }
 
-div.screen {
-    .controls {
-        position: relative;
+div.screen .controls {
+    position: relative;
+}
 
-        div {
-            display: inline-block;
-        }
-        div + div {
-            position: absolute;
-            right: 0;
-        }
-    }
+div.screen .controls div {
+    display: inline-block;
+}
 
-    a {
-        display: inline-block;
-        position: relative;
-        width: 2em;
-        height: 2em;
-        margin: 0.5em;
-    }
-    a span {
-        display: inline-block;
-        position: absolute;
-    }
-    a#start {
-        span {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 1em 0 1em 1.8em;
-            border-color: transparent transparent transparent gray;
-        }
-        &:hover:not(:active) span {
-            border-color: transparent transparent transparent dimgray;
-        }
-    }
-    a#pause {
-        span {
-            width: 0.6em;
-            height: 2em;
-            background-color: gray;
-        }
-        span + span {
-            left: 1.2em;
-        }
-        &:hover:not(:active) span {
-            background-color: dimgray;
-        }
-    }
-    a#reset {
-        span {
-            width: 2em;
-            height: 2em;
-            background-color: gray;
-        }
-        &:hover:not(:active) span {
-            background-color: dimgray;
-        }
-    }
-    a#zoomIn {
-        span:not(span + span) {
-            left: 50%;
-            width: 0.5em;
-            height: 100%;
-            transform: translateX(-50%);
-            background-color: gray;
-        }
-        span + span {
-            top: 50%;
-            width: 100%;
-            height: 0.5em;
-            transform: translateY(-50%);
-            background-color: gray;
-        }
-        &:hover:not(:active) span {
-            background-color: dimgray;
-        }
-    }
-    a#zoomOut {
-        span {
-            top: 50%;
-            width: 100%;
-            height: 0.5em;
-            transform: translateY(-50%);
-            background-color: gray;
-        }
-        &:hover:not(:active) span {
-            background-color: dimgray;
-        }
-    }
-    .hidden {
-        display: none;
-    }
+div.screen .controls div + div {
+    position: absolute;
+    right: 0;
+}
+
+div.screen a {
+    display: inline-block;
+    position: relative;
+    width: 2em;
+    height: 2em;
+    margin: 0.5em;
+}
+
+div.screen a span {
+    display: inline-block;
+    position: absolute;
+}
+
+div.screen a#start span {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1em 0 1em 1.8em;
+    border-color: transparent transparent transparent gray;
+}
+
+div.screen a#start:hover:not(:active) span {
+    border-color: transparent transparent transparent dimgray;
+}
+
+div.screen a#pause span {
+    width: 0.6em;
+    height: 2em;
+    background-color: gray;
+}
+
+div.screen a#pause span + span {
+    left: 1.2em;
+}
+
+div.screen a#pause:hover:not(:active) span {
+    background-color: dimgray;
+}
+
+div.screen a#reset span {
+    width: 2em;
+    height: 2em;
+    background-color: gray;
+}
+
+div.screen a#reset:hover:not(:active) span {
+    background-color: dimgray;
+}
+
+div.screen a#zoomIn span:not(span + span) {
+    left: 50%;
+    width: 0.5em;
+    height: 100%;
+    transform: translateX(-50%);
+    background-color: gray;
+}
+
+div.screen a#zoomIn span + span {
+    top: 50%;
+    width: 100%;
+    height: 0.5em;
+    transform: translateY(-50%);
+    background-color: gray;
+}
+
+div.screen a#zoomIn:hover:not(:active) span {
+    background-color: dimgray;
+}
+
+div.screen a#zoomOut span {
+    top: 50%;
+    width: 100%;
+    height: 0.5em;
+    transform: translateY(-50%);
+    background-color: gray;
+}
+
+div.screen a#zoomOut:hover:not(:active) span {
+    background-color: dimgray;
+}
+
+div.screen .hidden {
+    display: none;
 }
 
 div.params {
     width: auto;
     margin-left: 20px;
+}
 
-    .container {
-        margin-top: 1em;
+div.params .container {
+    margin-top: 1em;
+}
 
-        > div {
-            &:not(:has(input[type="checkbox"])) {
-                display: grid;
-                grid-template-columns: 30% 40% 30%;
-            }
+div.params .container > div {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
 
-            .inactive {
-                opacity: 0.5;
-            }
-        }
-    }
+div.params .container > div:has(input[type="checkbox"]) {
+    display: initial;
+}
 
-    .flexbox {
-        display: flex;
-    }
+div.params .container .inactive {
+    opacity: 0.5;
+}
 
-    h2 {
-        font-weight: normal;
-    }
+div.params .flexbox {
+    display: flex;
+}
 
-    label {
-        margin-block: 0.3em;
-    }
+div.params h2 {
+    font-weight: normal;
+}
 
-    hr {
-        margin-top: 1em;
-    }
+div.params label {
+    margin-block: 0.3em;
+}
 
-    :is(input, select) {
-        margin: auto 1em;
+div.params hr {
+    margin-top: 1em;
+}
 
-    }
+div.params input,
+div.params select {
+    margin: auto 1em;
+}
 
-    input[type="checkbox"] {
-        margin: 0.7em 1em;
-    }
+div.params input[type="checkbox"] {
+    margin: 0.7em 1em;
 }
 
 canvas#canvas1 {
