@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
+        <title>Eclipsing Variable Simulation</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div class="screen">
+            <div class="controls">
+                <div>
+                    <a id="start"><span></span></a>
+                    <a id="pause" class="hidden"><span></span><span></span></a>
+                    <a id="reset" class="hidden"><span></span></a>
+                </div>
+                <div>
+                    <a id="zoomIn"><span></span><span></span></a>
+                    <a id="zoomOut"><span></span></a>
+                </div>
+            </div>
+            <canvas id="canvas1" width="800" height="800" role="presentation"></canvas>
+            <canvas id="canvas2" width="800" height="200" role="presentation"></canvas>
+        </div>
+        <div class="params">
+            <h2>Star 1</h2>
+            <div class="container">
+                <div>
+                    <label for="m1">質量</label>
+                    <input id="m1" type="number" name="m1" step="any" value="3.17" />
+                    <label for="m1">M<sub>☉</sub></label>
+                </div>
+                <div>
+                    <label for="r1">半径</label>
+                    <input id="r1" type="number" name="r1" step="any" value="2.73" />
+                    <label for="r1">R<sub>☉</sub></label>
+                </div>
+                <div>
+                    <label for="t1">表面温度</label>
+                    <input id="t1" type="number" name="t1" step="any" value="13000" />
+                    <label for="t1">K</label>
+                </div>
+                <div>
+                    <label for="l1">光度</label>
+                    <input id="l1" type="number" name="l1" step="any" value="182" />
+                    <label for="l1">L<sub>☉</sub></label>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>Star 2</h2>
+            <div class="container">
+                <div>
+                    <label for="m2">質量</label>
+                    <input id="m2" type="number" name="m2" step="any" value="0.70" />
+                    <label for="m2">M<sub>☉</sub></label>
+                </div>
+                <div>
+                    <label for="r2">半径</label>
+                    <input id="r2" type="number" name="r2" step="any" value="3.48" />
+                    <label for="r2">R<sub>☉</sub></label>
+                </div>
+                <div>
+                    <label for="t2">表面温度</label>
+                    <input id="t2" type="number" name="t2" step="any" value="4500" />
+                    <label for="t2">K</label>
+                </div>
+                <div>
+                    <label for="l2">光度</label>
+                    <input id="l2" type="number" name="l2" step="any" value="6.92" />
+                    <label for="l2">L<sub>☉</sub></label>
+                </div>
+            </div>
+
+            <div class="flexbox">
+                <div class="container">
+                    <div>
+                        <label for="a">軌道長半径</label>
+                        <input id="a" type="number" name="a" step="any" value="0.0593" />
+                        <label for="a">au</label>
+                    </div>
+                    <div>
+                        <label for="e">軌道離心率</label>
+                        <input id="e" type="number" name="e" step="any" min="0" max="1" value="0" />
+                        <label for="e"></label>
+                    </div>
+                    <div>
+                        <label for="p">公転周期</label>
+                        <input id="p" type="number" name="p" step="any" value="" /> <!-- 2.867328 -->
+                        <label for="p">day</label>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div>
+                        <label for="r12">初期星間距離</label>
+                        <input id="r12" type="number" name="r12" step="any"/>
+                        <label for="r12">au</label>
+                    </div>
+                    <div>
+                        <label for="v0x">X相対初速度</label>
+                        <input id="v0x" type="number" name="v0x" step="any" />
+                        <label for="v0x">km/s</label>
+                    </div>
+                    <div>
+                        <label for="v0y">Y相対初速度</label>
+                        <input id="v0y" type="number" name="v0y" step="any" />
+                        <label for="v0y">km/s</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="flexbox">
+                <canvas id="canvasA" width="100" height="100" role="presentation"></canvas>
+                
+                <div class="container">
+                    <div>
+                        <label for="raan">昇交点経度</label>
+                        <input id="raan" type="number" name="raan" step="any" value="43.43" />
+                        <label for="raan">deg</label>
+                    </div>
+                    <div>
+                        <label for="inc">軌道傾斜角</label>
+                        <input id="inc" type="number" name="inc" step="any" value="8.70" />
+                        <label for="inc">deg</label>
+                    </div>
+                    <div>
+                        <label for="argp">近点引数</label>
+                        <input id="argp" type="number" name="argp" step="any" value="0" />
+                        <label for="argp">deg</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="container">
+                <div>
+                    <label for="dt">シミュレーション頻度 dt</label>
+                    <input id="dt" type="number" name="dt" step="any" value="0.01" />
+                    <label for="dt">day</label>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <label for="maxTrLenInput">軌跡の長さ</label>
+                    <input id="maxTrLenInput" type="range" name="maxTrLenInput" min="0" max="1" step="0.05" value="1" />
+                    <label for="maxTrLenInput"><span id="maxTrLenOutput"></span>周期</label>
+                </div>
+                <div>
+                    <input id="doShowT" type="checkbox" name="doShowT" checked /><label for="doShowT">経過時間を表示</label>
+                </div>
+                <div>
+                    <input id="doDrawCtr" type="checkbox" name="doDrawCtr" /><label for="doDrawCtr">共通重心を表示</label>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <label for="plotStyle">グラフ描画形式</label>
+                    <select id="plotStyle" name="plotStyle">
+                        <option value="point">点のみ</option>
+                        <option value="line">直線のみ</option>
+                        <option value="smoothLine">曲線のみ</option>
+                        <option value="linePoint">点＋直線</option>
+                        <option value="smoothLinePoint">点＋曲線</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="graphYMin">グラフ縦軸最小値</label>
+                    <input id="graphYMin" type="number" name="graphYMin" min="0" max="1" step="any" value="0.8" />
+                    <label for="graphYMin"></label>
+                </div>
+                <div>
+                    <label for="maxFluxLenInput">グラフ横軸設定</label>
+                    <input id="maxFluxLenInput" type="range" name="maxFluxLenInput" min="0" max="5" step="0.5" value="1" />
+                    <label for="maxFluxLenInput"><span id="maxFluxLenOutput"></span>周期</label>
+                </div>
+                <div>
+                    <input id="doLogFlux" type="checkbox" name="doLogFlux" checked /><label for="doLogFlux">グラフ縦軸を対数表示</label>
+                </div>
+
+                <div style="display: none;">
+                    <label for="dst">地球からの距離</label>
+                    <input id="dst" type="number" name="dst" step="any" value="90" />
+                    <label for="dst">ly</label>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
